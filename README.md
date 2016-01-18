@@ -1,2 +1,0 @@
-# CodeChallengeTetrisEdition
-Challenge by CubeYou
