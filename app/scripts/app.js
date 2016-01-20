@@ -15,8 +15,7 @@ angular
     'ngMessages',
     'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngDragDrop'
+    'ngSanitize'
   ])
   .config(function ($routeProvider) {
     $routeProvider

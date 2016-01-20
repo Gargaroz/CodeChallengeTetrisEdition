@@ -8,8 +8,22 @@
  * Controller of the codeChallengeApp
  */
 angular.module('codeChallengeApp')
-  .controller('GameCtrl', ['$scope', 'PlayerService', function ($scope, PlayerService) {
+  .controller('GameCtrl', ['$scope', 'PlayerFactory', function ($scope, PlayerFactory) {
   	var vm = this;
-  	vm.playerName = PlayerService.getName();
-  	vm.playerSign = PlayerService.getSign();
-  }]);
+  	vm.playerName = PlayerFactory.getName();
+  	vm.playerSign = PlayerFactory.getSign();
+ }])
+  .factory('GameFactory', [function(){
+  	var gameSettings = {
+  		turn: "X",
+  		spacesLeft: 9
+  	};
+  	return {
+  		getTurn: function(){
+  			return gameSettings.turn;
+  		},
+  		getSpacesLeft: function(){
+  			return gameSettings.spacesLeft;
+  		}
+  	}
+ }]);

@@ -8,10 +8,10 @@
  * Controller of the codeChallengeApp
  */
 angular.module('codeChallengeApp')
-  .controller('MainCtrl', ['$scope', 'PlayerService', '$location', function ($scope, PlayerService, $location){
+  .controller('MainCtrl', ['$scope', 'PlayerFactory', '$location', function ($scope, PlayerFactory, $location){
   	var vm = this;
   	vm.playAs = function(uSign){
-  		var signSet = PlayerService.setSign(uSign);
+  		var signSet = PlayerFactory.setSign(uSign);
   		console.info("uSign = ", uSign);
   		if (signSet) {
   			$location.path("/game");
@@ -21,7 +21,7 @@ angular.module('codeChallengeApp')
   		}
   	}
   }])
-  .factory('PlayerService', [function(){
+  .factory('PlayerFactory', [function(){
   	var playerSettings = {
   		name: "Gargaroz",
   		sign: "X"
