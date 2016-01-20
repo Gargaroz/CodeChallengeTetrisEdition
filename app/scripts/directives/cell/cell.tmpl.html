@@ -1,0 +1,5 @@
+<div class="col-lg-4 well" ng-click="cellctrl.writeSign()">
+	<span class="center-block label" ng-class="{'label-info': cellctrl.sign == 'X', 'label-primary': cellctrl.sign == 'O' }" ng-show="cellctrl.sign != ''">
+		<i class="fa fa-2x" ng-class="{'fa-times': cellctrl.sign == 'X', 'fa-circle-o': cellctrl.sign == 'O' }"></i>
+	</span>
+</div>

@@ -12,7 +12,6 @@ angular.module('codeChallengeApp')
   	var vm = this;
   	vm.playAs = function(uSign){
   		var signSet = PlayerFactory.setSign(uSign);
-  		console.info("uSign = ", uSign);
   		if (signSet) {
   			$location.path("/game");
   		} else {
@@ -22,22 +21,28 @@ angular.module('codeChallengeApp')
   	}
   }])
   .factory('PlayerFactory', [function(){
-  	var playerSettings = {
-  		name: "Gargaroz",
-  		sign: "X"
+  	var playersSettings = {
+  		1: {
+	  		name: "Gargaroz",
+	  		sign: "X",
+  		},
+  		2: {
+	  		name: "Mister E",
+	  		sign: "O",
+  		}
   	};
   	return {
   		setSign: function(iSign){
   			console.info("iSign = ", iSign);
   			if (iSign != 'X' && iSign != 'O' ) return false;
-  			playerSettings.sign = iSign;
+  			playersSettings.sign = iSign;
   			return true;
   		},
   		getSign: function(){
-  			return playerSettings.sign;
+  			return playersSettings.sign;
   		},
-  		getName: function(){
-  			return playerSettings.name;
+  		getName: function(player){
+  			return playersSettings[player].name;
   		}
   	}
 

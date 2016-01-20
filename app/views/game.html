@@ -6,27 +6,21 @@
 </div>
 <div class="container-fluid">
 	<div class="col-lg-6 col-lg-offset-3">
-		<div class="col-lg-4 well"></div>
-		<div class="col-lg-4 well"></div>
-		<div class="col-lg-4 well"></div>
+		<cell ng-repeat="column in [0,1,2]" row="0" column="column"></cell>
 	</div>
 	<div class="col-lg-6 col-lg-offset-3">
-		<div class="col-lg-4 well"></div>
-		<div class="col-lg-4 well"></div>
-		<div class="col-lg-4 well"></div>
+		<cell ng-repeat="column in [0,1,2]" row="1" column="column"></cell>
 	</div>
 	<div class="col-lg-6 col-lg-offset-3">
-		<div class="col-lg-4 well"></div>
-		<div class="col-lg-4 well"></div>
-		<div class="col-lg-4 well"></div>
+		<cell ng-repeat="column in [0,1,2]" row="2" column="column"></cell>
 	</div>
 </div>
 <div class="container-fluid">
 	<div class="col-lg-2">
-		<i class="fa fa-user-times"></i><span class="label label-primary">{{gamectrl.playerName}}</span>
+		<i class="fa fa-user-times"></i><span class="label label-primary">{{gamectrl.pOneName}}</span>
 	</div>
 	<div class="col-lg-2 col-lg-offset-8">
-		<i class="fa fa-user-secret"></i><span class="label label-primary">Mister E</span>
+		<i class="fa fa-user-secret"></i><span class="label label-primary">{{gamectrl.pTwoName}}</span>
 	</div>
 	<div class="col-lg-2 well">
 		<span class="label label-info center-block">
