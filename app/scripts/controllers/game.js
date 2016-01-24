@@ -8,10 +8,16 @@
  * Controller of the codeChallengeApp
  */
 angular.module('codeChallengeApp')
-  .controller('GameCtrl', ['$scope', 'GameFactory', 'PlayerFactory', '$location', '$timeout', function ($scope, GameFactory, PlayerFactory, $location, $timeout) {
+  .controller('GameCtrl', ['$scope', 'GameFactory', 'PlayerFactory', '$location', '$timeout', '$window', function ($scope, GameFactory, PlayerFactory, $location, $timeout, $window) {
   	var vm = this;
     vm.actualTurn = GameFactory.getTurn();
-    vm.status = GameFactory.getStatus();
+    vm.githubIcon = "github-box";
+    vm.goToGit = function(){
+      vm.githubIcon = (vm.githubIcon == "github-box" ? "github-circle" : "github-box");
+      $timeout(function(){
+        $window.open("https://github.com/Gargaroz/CodeChallengeTrisEdition", "_blank");
+      }, 500);
+    };
     vm.iconOpts = {'duration': 420};
     vm.btnUI = {
       replayIcon: "replay",
@@ -33,20 +39,21 @@ angular.module('codeChallengeApp')
       textSize: (vm.actualTurn == "O" ? "h2" : "h3"),
       label: (vm.actualTurn == "O" ? "label-warning" : "label-default")
     };
+    var newTurnReset = function(){
+      vm.playerOneUI.iconSize = (vm.actualTurn == "X" ? 28 : 20);
+      vm.playerOneUI.textSize = (vm.actualTurn == "X" ? "h2" : "h3");
+      vm.playerOneUI.label = (vm.actualTurn == "X" ? "label-warning" : "label-default");
+      vm.playerTwoUI.iconSize = (vm.actualTurn == "O" ? 28 : 20);
+      vm.playerTwoUI.textSize = (vm.actualTurn == "O" ? "h2" : "h3");
+      vm.playerTwoUI.label = (vm.actualTurn == "O" ? "label-warning" : "label-default");
+    };
     vm.resetGrid = function(){
       vm.btnUI.replayIcon = (vm.btnUI.replayIcon == "replay" ? "refresh" : "replay");
       $scope.$broadcast("resetGrid");
       GameFactory.resetGame();
-      vm.actualTurn = GameFactory.getTurn();
-      vm.gameStatus = GameFactory.getStatus();
+      newTurnReset();
       vm.playerOneUI.icon = "close";
-      vm.playerOneUI.iconSize = (vm.actualTurn == "X" ? 28 : 20);
-      vm.playerOneUI.textSize = (vm.actualTurn == "X" ? "h2" : "h3");
-      vm.playerOneUI.label = (vm.actualTurn == "X" ? "label-warning" : "label-default")
       vm.playerTwoUI.icon = "panorama_fisheye";
-      vm.playerTwoUI.iconSize = (vm.actualTurn == "O" ? 28 : 20);
-      vm.playerTwoUI.textSize = (vm.actualTurn == "O" ? "h2" : "h3");
-      vm.playerTwoUI.label = (vm.actualTurn == "O" ? "label-warning" : "label-default")
     };
     vm.exit = function(){
       vm.btnUI.exitIcon = "arrow_forward";
@@ -55,13 +62,7 @@ angular.module('codeChallengeApp')
       }, 500);
     };
     $scope.$on("turnChanged", function(turnChangedEvent){
-      vm.actualTurn = GameFactory.getTurn();
-      vm.playerOneUI.iconSize = (vm.actualTurn == "X" ? 28 : 20);
-      vm.playerOneUI.textSize = (vm.actualTurn == "X" ? "h2" : "h3");
-      vm.playerOneUI.label = (vm.actualTurn == "X" ? "label-warning" : "label-default")
-      vm.playerTwoUI.iconSize = (vm.actualTurn == "O" ? 28 : 20);
-      vm.playerTwoUI.textSize = (vm.actualTurn == "O" ? "h2" : "h3");
-      vm.playerTwoUI.label = (vm.actualTurn == "O" ? "label-warning" : "label-default")
+      newTurnReset();
     });
     $scope.$on("thisPlayerWon", function(thisPlayerWonEvent, winningCombo){
       $scope.$broadcast("enlightYourselves", winningCombo);
@@ -76,6 +77,5 @@ angular.module('codeChallengeApp')
         vm.playerOneUI.icon = "thumb_down";
         vm.playerOneUI.label = "label-danger";
       }
-      vm.gameStatus = GameFactory.getStatus();
     });
  }]);

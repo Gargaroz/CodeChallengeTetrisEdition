@@ -13,8 +13,7 @@ angular.module('codeChallengeApp')
     vm.playerX = "";
     vm.playerO = "";
   	vm.start = function(){
-      PlayerFactory.setName("X", vm.playerX);
-      PlayerFactory.setName("O", vm.playerO);
+      PlayerFactory.setPlayersNames(vm.playerX, vm.playerO);
       $location.path("/game");
   	}
   }]);

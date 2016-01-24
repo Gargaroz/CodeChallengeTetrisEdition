@@ -43,14 +43,14 @@ angular.module('codeChallengeApp')
       playersSettings[player].ownedCells.push(cell);
     }
     return {
-      setName: function(player, name){
-        playersSettings[player].name = name;
+      setPlayersNames: function(playerX, playerO){
+        playersSettings["X"].name = playerX;
+        playersSettings["O"].name = playerO;
       },
       getName: function(player){
         return playersSettings[player].name;
       },
       resetCombosAndCells: function(){
-        console.log("playersSettings = ", playersSettings);
         angular.forEach(playersSettings, function(player){
           player.combosLeft = [
             ["00","01","02"],
