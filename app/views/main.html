@@ -5,13 +5,44 @@
   </p>
   <img src="images/yeoman.png" title="Versione 3.3.0">
   <img src="images/angular.png" title="Versione 1.4.8">
+  <img src="images/bootstrap.png" title="Versione 3.3.6">
   <p>
-    Chose your side wisely, my friend
+    Chose players names:
   </p>
-  <button class="btn btn-lg btn-info" ng-click="mainctrl.playAs('X')">
+    <form name="playersNamesForm" class="form-horizontal">
+      <div class="form-group">
+        <label class="control-label col-lg-2">X player</label>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" name="playerX" ng-model="mainctrl.playerX" required ng-maxlength="8">
+        </div>
+        <span class="text-danger col-lg-2" ng-show="playersNamesForm.playerX.$error.required">
+          <b>Required</b>
+        </span>
+        <span class="text-danger col-lg-2" ng-show="playersNamesForm.playerX.$error['maxlength']">
+          <b>Max 8 letters</b>
+        </span>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-lg-2">O player</label>
+        <div class="col-lg-8">
+          <input type="text" class="form-control" name="playerO" ng-model="mainctrl.playerO" required ng-maxlength="8">
+        </div>
+        <span class="text-danger col-lg-2" ng-show="playersNamesForm.playerO.$error.required">
+          <b>Required</b>
+        </span>
+        <span class="text-danger col-lg-2" ng-show="playersNamesForm.playerO.$error['maxlength']">
+          <b>Max 8 letters</b>
+        </span>
+      </div>
+    </form>
+    <button type="submit" class="btn btn-info" ng-click="mainctrl.start()" ng-disabled="playersNamesForm.$error.required || playersNamesForm.$error.maxlength">
+      Start
+    </button>
+  </form>
+  <!-- <button class="btn btn-lg btn-info" ng-click="mainctrl.playAs('X')">
     <i class="fa fa-times"></i>
   </button>
   <button class="btn btn-lg btn-info" ng-click="mainctrl.playAs('O')">
     <i class="fa fa-circle-o"></i>
-  </button>
+  </button> -->
 </div>

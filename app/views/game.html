@@ -3,33 +3,44 @@
   <p class="lead">
     Tris Edition
   </p>
+  <b>Remember: X moves first</b>
 </div>
 <div class="container-fluid">
-	<div class="col-lg-6 col-lg-offset-3">
-		<cell ng-repeat="column in [0,1,2]" row="0" column="column"></cell>
+	<div class="col-lg-3">
+		<b ng-class="gamectrl.playerOneUI.textSize">
+			<span class="label" ng-class="gamectrl.playerOneUI.label">
+				<ng-md-icon icon="{{gamectrl.playerOneUI.icon}}" options="{{gamectrl.iconOpts}}" size="{{gamectrl.playerOneUI.iconSize}}"></ng-md-icon>
+				{{gamectrl.playerOneUI.name}}
+			</span>
+		</b>
 	</div>
-	<div class="col-lg-6 col-lg-offset-3">
-		<cell ng-repeat="column in [0,1,2]" row="1" column="column"></cell>
+	<div class="col-lg-6">
+		<div class="btn-group btn-group-justified">
+			<a class="btn btn-md btn-info" ng-click="gamectrl.resetGrid()">
+				Play again
+				<ng-md-icon icon="{{gamectrl.btnUI.replayIcon}}" options="{{gamectrl.iconOpts}}"></ng-md-icon>
+			</a>
+			<a class="btn btn-md btn-primary" ng-click="gamectrl.exit()">
+				Rename players
+				<ng-md-icon icon="{{gamectrl.btnUI.exitIcon}}" options="{{gamectrl.iconOpts}}"></ng-md-icon>
+			</a>
+		</div>
 	</div>
-	<div class="col-lg-6 col-lg-offset-3">
-		<cell ng-repeat="column in [0,1,2]" row="2" column="column"></cell>
+	<div class="col-lg-3">
+		<b ng-class="gamectrl.playerTwoUI.textSize">
+			<span class="label" ng-class="gamectrl.playerTwoUI.label">
+				<ng-md-icon icon="{{gamectrl.playerTwoUI.icon}}" options="{{gamectrl.iconOpts}}" size="{{gamectrl.playerTwoUI.iconSize}}"></ng-md-icon>
+				{{gamectrl.playerTwoUI.name}}
+			</span>
+		</b>
 	</div>
 </div>
-<div class="container-fluid">
-	<div class="col-lg-2">
-		<i class="fa fa-user-times"></i><span class="label label-primary">{{gamectrl.pOneName}}</span>
-	</div>
-	<div class="col-lg-2 col-lg-offset-8">
-		<i class="fa fa-user-secret"></i><span class="label label-primary">{{gamectrl.pTwoName}}</span>
-	</div>
-	<div class="col-lg-2 well">
-		<span class="label label-info center-block">
-			<i class="fa fa-2x fa-times"></i>
-		</span>
-	</div>
-	<div class="col-lg-2 col-lg-offset-8 well">
-		<span class="label label-primary center-block">
-			<i class="fa fa-2x fa-circle-o"></i>
-		</span>
+<div class="container-fluid bg-primary">
+	<div style="vertical-align: middle;">
+		<div class="col-lg-6 col-lg-offset-3" ng-repeat="row in [0,1,2]">
+			<div ng-repeat="column in [0,1,2]">
+				<cell id="{{row.toString() + column.toString()}}"></cell>			
+			</div>
+		</div>
 	</div>
 </div>

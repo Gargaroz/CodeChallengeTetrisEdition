@@ -15,7 +15,9 @@ angular
     'ngMessages',
     'ngResource',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'ngMdIcons'
+
   ])
   .config(function ($routeProvider) {
     $routeProvider
